@@ -6,7 +6,12 @@ import About from './componants/About';
 import { useState } from 'react';
 import Alert from './componants/Alert';
 import React from 'react';
-
+import { 
+          BrowserRouter as Router,
+          Routes ,
+          Route 
+        } from 'react-router-dom';  
+import Contact from './componants/Contact';
 
 
 function App() {
@@ -48,18 +53,23 @@ function App() {
   }
   return (
     <>
-
+     <Router>
       <Navbar title="TextUtile" aboutText="about us" mode={mode} toggleMode={toggleMode} />
       {/* <Navbar/>   -- for default props property  */}
       <Alert alert={alert} />
 
-      <div className="container my-3">
-        {/* <About /> */}
-        <TextForm showAlert={showAlert} heading="Enter the text to analize below" mode={mode} />
+      <div className="container my-3">                
+          <Routes>
+            <Route path="/about" element={<About  mode={mode} />}>  </Route>
+            <Route path="/contact" element={<Contact />}>  </Route>
+            <Route path="/" element={<TextForm heading="Enter text to analyze"  mode={mode} showAlert={showAlert} />}>
+            </Route>
+          </Routes>
       </div>
-
+      </Router>
     </>
   );
 }
 
 export default App;
+ 
